@@ -12,7 +12,7 @@ function Dashboard() {
     fetch("https://63f71c25e40e087c958797ea.mockapi.io/user/")
       .then((data) => data.json())
       .then((ursdata) => seturs(ursdata));
-  }, []);
+  }, [urs]);
 
   const deleteUsers = (id) => {
     fetch(`https://63f71c25e40e087c958797ea.mockapi.io/user/${id}`, {
