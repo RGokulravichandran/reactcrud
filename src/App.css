@@ -1,0 +1,40 @@
+.TotalCardDiv {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+.PageNotFoundGiff {
+  align-items: center;
+}
+
+.UserInputs {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 10px;
+  min-height: 100vh;
+  max-width: 400px;
+  margin: auto;
+  justify-content: center;
+  background-color: rgb(118, 146, 125);
+}
+
+.CreateUserGiff {
+  width: 150px;
+  border-radius: 100px;
+  opacity: 70%;
+  margin: auto;
+}
+.App {
+  margin: 0;
+  border: 0;
+}
+
+.profileCard {
+  background-color: red;
+  display: flex;
+  justify-content: center;
+}
