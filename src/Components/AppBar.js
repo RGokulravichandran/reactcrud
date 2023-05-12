@@ -44,12 +44,13 @@ export default function HideAppBar(props) {
       <HideOnScroll {...props}>
         <AppBar>
           <Toolbar>
+            <Button onClick={() => navigate("/")} sx={{ marginRight: "auto" }}>
+              <HomeIcon sx={{ color: "white" }} fontSize="large" />
+            </Button>
             <Typography variant="h6" component="div">
               Welcome To Customer Portal
             </Typography>
-            <Button onClick={() => navigate("/")} sx={{ marginLeft: "auto" }}>
-              <HomeIcon sx={{ color: "white" }} fontSize="large" />
-            </Button>
+
             <Button
               onClick={() => navigate("/create-user")}
               sx={{ marginLeft: "auto" }}

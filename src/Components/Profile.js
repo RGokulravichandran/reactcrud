@@ -11,7 +11,6 @@ function Profile() {
   const { id } = useParams();
   const navigate = useNavigate();
   const [currentUser, setcurrentUser] = useState({});
-
   fetch(`https://63f71c25e40e087c958797ea.mockapi.io/user/${id}`).then((data) =>
     data.json().then((currentUsr) => setcurrentUser(currentUsr))
   );

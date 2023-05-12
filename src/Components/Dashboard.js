@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import CardComp from "../CardComp";
+import CardComp from "./CardComp";
 import "../App.js";
 import CircularProgress from "@mui/material/CircularProgress";
 import Box from "@mui/material/Box";
