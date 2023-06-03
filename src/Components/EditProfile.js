@@ -1,7 +1,6 @@
 import { useParams } from "react-router-dom";
 import "../App.css";
-import React, { useState, useEffect } from "react";
-import CreateUser from "./CreateUser";
+import React, { useState } from "react";
 import TextField from "@mui/material/TextField";
 import Divider from "@mui/material/Divider";
 import Chip from "@mui/material/Chip";
@@ -11,6 +10,9 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import { useNavigate } from "react-router-dom";
+import { API_URL } from "../Global";
+import CircularProgress from "@mui/material/CircularProgress";
+import Box from "@mui/material/Box";
 
 const createUserValidationSchema = yup.object({
   name: yup
@@ -25,21 +27,18 @@ const createUserValidationSchema = yup.object({
 
 function GetCurrentUserData() {
   const { id } = useParams();
-
   const [currentUser, setcurrentUser] = useState(null);
 
-  fetch(`https://63f71c25e40e087c958797ea.mockapi.io/user/${id}`).then((data) =>
+  fetch(`${API_URL}/${id}`).then((data) =>
     data.json().then((currentUsr) => setcurrentUser(currentUsr))
   );
-  return (
-    <div>
-      {currentUser ? (
-        <EditProfile currentUser={currentUser} />
-      ) : (
-        <p>Loading...</p>
-      )}
-    </div>
-  );
+  if (currentUser == null) {
+    <Box sx={{ display: "flex", justifyContent: "center", paddingTop: 30 }}>
+      <CircularProgress />
+    </Box>;
+  } else {
+    return <EditProfile currentUser={currentUser} />;
+  }
 }
 
 function EditProfile({ currentUser }) {
@@ -61,16 +60,13 @@ function EditProfile({ currentUser }) {
     });
 
   const updateUser = (updatedUser) => {
-    fetch(
-      `https://63f71c25e40e087c958797ea.mockapi.io/user/${currentUser.id}`,
-      {
-        method: "PUT",
-        body: JSON.stringify(updatedUser),
-        headers: {
-          "Content-Type": "application/json; charset=UTF-8",
-        },
-      }
-    ).then(() => navigate("/"));
+    fetch(`${API_URL}/${currentUser.id}`, {
+      method: "PUT",
+      body: JSON.stringify(updatedUser),
+      headers: {
+        "Content-Type": "application/json; charset=UTF-8",
+      },
+    }).then(() => navigate("/"));
   };
 
   return (
@@ -78,6 +74,7 @@ function EditProfile({ currentUser }) {
       <img
         className="CreateUserGiff"
         src="https://zulu.org.za/travel/wp-content/uploads/sites/2/2021/04/default-avatar.jpg"
+        alt="Profilelogo"
       />
 
       <Divider>
@@ -156,7 +153,7 @@ function EditProfile({ currentUser }) {
         control={<Checkbox />}
         label="I have read and agree to the privacy policy, term of service, and community guidelines."
       />
-      <Button variant="contained" type="Submit">
+      <Button variant="contained" type="submit">
         Submit
       </Button>
       <Button variant="contained" onClick={() => navigate("/")} type="button">

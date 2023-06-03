@@ -6,15 +6,24 @@ import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { CardActionArea } from "@mui/material";
 import Button from "@mui/material/Button";
+import { API_URL } from "../Global";
+import CircularProgress from "@mui/material/CircularProgress";
+import Box from "@mui/material/Box";
 
 function Profile() {
   const { id } = useParams();
   const navigate = useNavigate();
-  const [currentUser, setcurrentUser] = useState({});
-  fetch(`https://63f71c25e40e087c958797ea.mockapi.io/user/${id}`).then((data) =>
-    data.json().then((currentUsr) => setcurrentUser(currentUsr))
-  );
-
+  const [currentUser, setcurrentUser] = useState(null);
+  fetch(`${API_URL}/${id}`)
+    .then((response) => response.json())
+    .then((data) => setcurrentUser(data));
+  if (currentUser == null) {
+    return (
+      <Box sx={{ display: "flex", justifyContent: "center", paddingTop: 30 }}>
+        <CircularProgress />
+      </Box>
+    );
+  }
   return (
     <div className="profileCard">
       <Card sx={{ maxWidth: 345 }}>
@@ -24,7 +33,6 @@ function Profile() {
             height="500"
             width="500"
             image={currentUser.avatar}
-            alt="green iguana"
           />
           <CardContent>
             <Typography gutterBottom variant="h5" component="div">

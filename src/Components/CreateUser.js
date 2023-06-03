@@ -8,6 +8,7 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import { useNavigate } from "react-router-dom";
+import { API_URL } from "../Global";
 
 const createUserValidationSchema = yup.object({
   name: yup
@@ -41,7 +42,7 @@ function CreateUser() {
 
   const addUser = (newUserValues) => {
     console.log(newUserValues);
-    fetch("https://63f71c25e40e087c958797ea.mockapi.io/user", {
+    fetch(`${API_URL}`, {
       method: "POST",
       body: JSON.stringify(newUserValues),
       headers: {
@@ -136,7 +137,7 @@ function CreateUser() {
       <Button variant="contained" type="Submit">
         Submit
       </Button>
-      <Button variant="contained" onClick={() => navigate("/")} type="button">
+      <Button variant="contained" onClick={navigate("/")} type="button">
         Cancel
       </Button>
     </form>

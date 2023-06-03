@@ -1,10 +1,5 @@
 import "./App.css";
-import {
-  BrowserRouter as Router,
-  Route,
-  Routes,
-  NavLink,
-} from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import HideAppBar from "./Components/AppBar";
 import Dashboard from "./Components/Dashboard";
 import PageNotFound from "./Components/PageNotFound";

@@ -12,13 +12,20 @@ export default function CardComp({ user, deleteButton }) {
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardMedia
+        sx={{ cursor: "pointer" }}
         component="img"
         alt="green iguana"
         height="140"
         image={user.avatar}
+        onClick={() => navigate(`/profile/${user.id}`)}
       />
       <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
+        <Typography
+          gutterBottom
+          variant="h5"
+          sx={{ cursor: "pointer" }}
+          onClick={() => navigate(`/profile/${user.id}`)}
+        >
           {user.name}
         </Typography>
         <Typography variant="body2" color="text.secondary">
