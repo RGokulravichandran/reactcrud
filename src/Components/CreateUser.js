@@ -1,28 +1,26 @@
-import React, { useEffect } from "react";
+import React from "react";
 import TextField from "@mui/material/TextField";
 import Divider from "@mui/material/Divider";
 import Chip from "@mui/material/Chip";
 import { Button } from "@mui/material";
-import Checkbox from "@mui/material/Checkbox";
-import FormControlLabel from "@mui/material/FormControlLabel";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import { useNavigate } from "react-router-dom";
 import { API_URL } from "../Global";
 
-const createUserValidationSchema = yup.object({
-  name: yup
-    .string()
-    .min(3, "need a bigger name")
-    .required("This field should not be empty"),
-  avatar: yup.string().required("This field should not be empty"),
-  email: yup.string().required("This field should not be empty"),
-  phone: yup.number().required("This field should not be empty"),
-  address: yup.string().required("This field should not be empty"),
-});
-
 function CreateUser() {
   const navigate = useNavigate();
+
+  const createUserValidationSchema = yup.object({
+    name: yup
+      .string()
+      .min(3, "need a bigger name")
+      .required("This field should not be empty"),
+    avatar: yup.string().required("This field should not be empty"),
+    email: yup.string().required("This field should not be empty"),
+    phone: yup.number().required("This field should not be empty"),
+    address: yup.string().required("This field should not be empty"),
+  });
 
   const { handleSubmit, values, handleChange, handleBlur, touched, errors } =
     useFormik({
@@ -35,13 +33,11 @@ function CreateUser() {
       },
       validationSchema: createUserValidationSchema,
       onSubmit: (newUserValues) => {
-        console.log(newUserValues);
         addUser(newUserValues);
       },
     });
 
   const addUser = (newUserValues) => {
-    console.log(newUserValues);
     fetch(`${API_URL}`, {
       method: "POST",
       body: JSON.stringify(newUserValues),
@@ -56,6 +52,7 @@ function CreateUser() {
       <img
         className="CreateUserGiff"
         src="https://zulu.org.za/travel/wp-content/uploads/sites/2/2021/04/default-avatar.jpg"
+        alt="logo"
       />
 
       <Divider>
@@ -130,15 +127,8 @@ function CreateUser() {
         helperText={touched.address && errors.address ? errors.address : null}
       />
 
-      <FormControlLabel
-        control={<Checkbox />}
-        label="I have read and agree to the privacy policy, term of service, and community guidelines."
-      />
-      <Button variant="contained" type="Submit">
-        Submit
-      </Button>
-      <Button variant="contained" onClick={navigate("/")} type="button">
-        Cancel
+      <Button variant="contained" type="submit">
+        Add User
       </Button>
     </form>
   );
