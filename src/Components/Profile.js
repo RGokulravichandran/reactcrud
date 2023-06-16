@@ -26,7 +26,7 @@ function Profile() {
   }
   return (
     <div className="profileCard">
-      <Card sx={{ maxWidth: 345 }}>
+      <Card sx={{ maxWidth: 545 }}>
         <CardActionArea>
           <CardMedia
             component="img"

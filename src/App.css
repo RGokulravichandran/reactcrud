@@ -20,7 +20,7 @@
   max-height: 100vh;
   max-width: 400px;
   margin: auto;
-  margin-top: 10px;
+  margin-top: 20px;
   background-color: rgb(195, 211, 235);
 }
 
@@ -29,10 +29,6 @@
   border-radius: 100px;
   opacity: 70%;
   margin: auto;
-}
-.App {
-  margin: 0;
-  border: 0;
 }
 
 .profileCard {
